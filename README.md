@@ -15,6 +15,8 @@ Using Docker API being proxied by Nginx.
 
 [https://github.com/lyft/docker/blob/master/api/client/pause.go](https://github.com/lyft/docker/blob/master/api/client/pause.go)
 
+[https://til.simonwillison.net/nginx/proxy-domain-sockets](https://til.simonwillison.net/nginx/proxy-domain-sockets)
+
 ## Up and Running
 
 ```bash
