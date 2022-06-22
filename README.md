@@ -1,6 +1,13 @@
 # Nginx Proxy for Docker API
 
-Using Docker API being proxied by Nginx
+Using Docker API being proxied by Nginx.
+
+## UI
+
+> Access:
+[http://localhost:8080](http://localhost:8080)
+
+![image](./images/ui-example.png)
 
 ## Docs
 
