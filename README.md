@@ -15,6 +15,8 @@ Using Docker API being proxied by Nginx.
 
 [https://github.com/lyft/docker/blob/master/api/client/pause.go](https://github.com/lyft/docker/blob/master/api/client/pause.go)
 
+## Up and Running
+
 ```bash
 
 # list docker containers
