@@ -20,18 +20,35 @@ docker container run -d \
   portainer/portainer-ce:2.9.3
 # access on https://localhost:9443
 
+docker container logs -f --tail 50 portainer
+
 # clean up
 docker container rm -f portainer
 docker volume rm portainer_data
 ```
 
-## Up and Running
+## Up and Running (with our image from Docker Hub)
 
 ```bash
+docker container run \
+  -p 8080:8080 \
+  --name micro-portainer \
+  --restart=always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  juliocesarmidia/micro-portainer:latest
+# access on http://localhost:8080
 
+docker container logs -f --tail 50 micro-portainer
+
+# clean up
+docker container rm -f micro-portainer
+```
+
+## Up and Running (local build)
+
+```bash
 docker-compose up -d --build web
 docker-compose logs -f --tail 50 web
-
 ```
 
 ## UI access
