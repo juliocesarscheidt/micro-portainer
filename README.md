@@ -1,6 +1,6 @@
 # Nginx Proxy for Docker API
 
-Using Docker API being proxied by Nginx, to expose its information on some UI.
+Using Docker API being proxied by Nginx, to expose its information on some UI made with VueJS.
 
 Based on Portainer:
 [https://docs.portainer.io/v/ce-2.9/start/install/server/docker/linux](https://docs.portainer.io/v/ce-2.9/start/install/server/docker/linux)
@@ -27,10 +27,11 @@ docker container rm -f portainer
 docker volume rm portainer_data
 ```
 
-## Up and Running (with our image from Docker Hub)
+## Up and Running (image from Docker Hub)
+[https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer](https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer)
 
 ```bash
-docker container run \
+docker container run -d \
   -p 8080:8080 \
   --name micro-portainer \
   --restart=always \
@@ -55,4 +56,4 @@ docker-compose logs -f --tail 50 web
 
 [http://localhost:8080](http://localhost:8080)
 
-![image](./images/ui-example.png)
+![image](./images/containers-page.png)
