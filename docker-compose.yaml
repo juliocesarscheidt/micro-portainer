@@ -4,7 +4,7 @@ services:
   web:
     container_name: web
     hostname: web
-    image: juliocesarmidia/web:latest
+    image: juliocesarmidia/micro-portainer:latest
     build:
       context: ./web
     restart: on-failure
@@ -21,10 +21,7 @@ services:
 
 networks:
   subnet_0:
-    driver_opts:
-      com.docker.network.enable_ipv6: "false"
-    ipam:
-      driver: default
+    driver: bridge
 
 volumes:
   web-node-modules: {}

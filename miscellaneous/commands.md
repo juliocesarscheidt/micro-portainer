@@ -5,6 +5,10 @@
 # list docker containers
 curl --unix-socket /var/run/docker.sock --url "http://localhost/v1.41/containers/json"
 
+# list docker images
+curl --unix-socket /var/run/docker.sock --url "http://localhost/v1.41/images/json"
+
+
 # with nginx proxy
 docker image pull nginx:1.22
 

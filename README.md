@@ -1,6 +1,6 @@
 # Nginx Proxy for Docker API
 
-Using Docker API being proxied by Nginx.
+Using Docker API being proxied by Nginx, to expose its information on some UI.
 
 Based on Portainer:
 [https://docs.portainer.io/v/ce-2.9/start/install/server/docker/linux](https://docs.portainer.io/v/ce-2.9/start/install/server/docker/linux)
@@ -25,12 +25,6 @@ docker container rm -f portainer
 docker volume rm portainer_data
 ```
 
-## UI access
-
-[http://localhost:8080](http://localhost:8080)
-
-![image](./images/ui-example.png)
-
 ## Up and Running
 
 ```bash
@@ -39,3 +33,9 @@ docker-compose up -d --build web
 docker-compose logs -f --tail 50 web
 
 ```
+
+## UI access
+
+[http://localhost:8080](http://localhost:8080)
+
+![image](./images/ui-example.png)

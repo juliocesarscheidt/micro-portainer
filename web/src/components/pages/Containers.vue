@@ -2,9 +2,9 @@
   <section class="flex flex-column flex-align-center pt-5 pb-5">
     <article class="flex flex-column flex-justify-center flex-align-center">
       <h1 style="text-align: center; margin-bottom: 25px;">
-        Nginx Proxy for Docker API
+        Containers
       </h1>
-      <table class="table-containers">
+      <table class="table-data">
         <thead>
           <tr>
             <th>Id</th>
@@ -13,6 +13,7 @@
             <th>Status</th>
             <th>Image</th>
             <th>Command</th>
+            <th>Ports</th>
             <th>Created</th>
             <th>Pause</th>
             <th>Remove</th>
@@ -26,14 +27,17 @@
             <td>{{ container.Status }}</td>
             <td>{{ container.Image }}</td>
             <td>{{ container.Command }}</td>
+            <td>{{ container.Ports }}</td>
             <td>{{ container.Created }}</td>
             <td>
-              <button class="btn" @click="pauseUnpause(container.Id, container.State)">
+              <b-button variant="outline-primary" @click="pauseUnpause(container.Id, container.State)">
                 {{ container.State === 'paused' ? 'Unpause' : 'Pause' }}
-              </button>
+              </b-button>
             </td>
             <td>
-              <button class="btn" @click="remove(container.Id)">Remove</button>
+              <b-button variant="outline-danger" @click="remove(container.Id)">
+                Remove
+              </b-button>
             </td>
           </tr>
         </tbody>
@@ -47,16 +51,6 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 import { fetchContainers, pauseUnpauseContainer, removeContainer } from '../../services/containers';
 
 export default {
-  components: {
-  },
-  directives: {
-  },
-  filters: {
-  },
-  mixins: [
-  ],
-  props: {
-  },
   data() {
     return {
       containers: [],
@@ -65,10 +59,6 @@ export default {
   computed: {
     ...mapState([]),
     ...mapGetters([]),
-  },
-  watch: {
-  },
-  beforeMount() {
   },
   mounted() {
     this.fetch();
@@ -83,9 +73,9 @@ export default {
         Status: container.Status,
         Image: container.Image,
         Command: container.Command,
+        Ports: (container.Ports || []).map(port => `${port.PublicPort || ''}:${port.PrivatePort || ''}`).join(', '),
         Created: new Date(Date(container.Created)).toISOString(),
       }));
-      console.log('this.containers', this.containers);
     },
     async pauseUnpause(id, state) {
       let op = 'pause';
@@ -108,10 +98,6 @@ export default {
       }
     },
   },
-  beforeDestroy() {
-  },
-  destroyed() {
-  },
 }
 </script>
 
@@ -126,27 +112,21 @@ section > article {
   padding: 20px;
 }
 
-.table-containers {
+.table-data {
   border: 1px solid rgba(0, 0, 0, .25);
+  min-width: 600px;
 }
 
-.table-containers > tbody > tr:nth-child(odd) {
+.table-data > tbody > tr:nth-child(odd) {
   background-color: #f2f2f2;
 }
 
-.table-containers > thead, .table-containers > tbody {
-  text-align: center;
+.table-data td {
+  padding: 5px;
 }
 
-.btn {
-  outline: none;
-  border: none;
-  padding: 10px;
-  min-width: 60px;
-  background-color: #444;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 0.3em;
+.table-data > thead, .table-data > tbody {
+  text-align: center;
 }
 
 @media only screen and (max-width: 991px) {

@@ -1,7 +1,7 @@
 <template>
   <b-navbar toggleable="lg" type="light">
     <b-container>
-      <b-navbar-brand v-bind:to="{name: 'Home'}">
+      <b-navbar-brand v-bind:to="{name: 'Containers'}">
         <span style="font-weight: bold; color: #f22;">UI </span>
         <span style="font-weight: lighter;">Docker</span>
       </b-navbar-brand>
@@ -10,7 +10,8 @@
 
       <b-collapse id="nav-collapse" is-nav right>
         <b-navbar-nav>
-          <b-nav-item v-bind:to="{name: 'Home'}">Home</b-nav-item>
+          <b-nav-item v-bind:to="{name: 'Containers'}">Containers</b-nav-item>
+          <b-nav-item v-bind:to="{name: 'Images'}">Images</b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
