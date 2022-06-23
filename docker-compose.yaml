@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  web:
+    container_name: web
+    hostname: web
+    image: juliocesarmidia/web:latest
+    build:
+      context: ./web
+    restart: on-failure
+    networks:
+      - subnet_0
+    ports:
+      - 8080:8080
+    environment:
+      NODE_ENV: production
+    volumes:
+      - ./web:/app:rw
+      - web-node-modules:/app/node_modules:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  subnet_0:
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+
+volumes:
+  web-node-modules: {}
+
+secrets: {}

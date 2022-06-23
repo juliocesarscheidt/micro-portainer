@@ -58,18 +58,18 @@
     function pauseUnpauseContainer(id, state) {
       let op = 'pause';
       if (state === 'paused') op = 'unpause';
-      fetch(`/v1.41/containers/${id}/${op}`, {method: 'POST', body: null}).then((response) => {
-        console.log('response', response);
-      });
-    }
-    
-    function removeContainer(id) {
-      fetch(`/v1.41/containers/${id}?force=1`, {method: 'DELETE'}).then((response) => {
+      fetch(`/api/containers/${id}/${op}`, {method: 'POST', body: null}).then((response) => {
         console.log('response', response);
       });
     }
 
-    fetch('/v1.41/containers/json').then((response) => {
+    function removeContainer(id) {
+      fetch(`/api/containers/${id}?force=1`, {method: 'DELETE'}).then((response) => {
+        console.log('response', response);
+      });
+    }
+
+    fetch('/api/containers/json').then((response) => {
       return response.json();
     }).then((response) => {
       console.log('response', response);
