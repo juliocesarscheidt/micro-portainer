@@ -31,6 +31,7 @@ docker volume rm portainer_data
 [https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer](https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer)
 
 ```bash
+# default docker API version used: 1.41
 docker container run -d \
   -p 8080:8080 \
   --name micro-portainer \
@@ -39,6 +40,7 @@ docker container run -d \
   juliocesarmidia/micro-portainer:latest
 # access on http://localhost:8080
 
+# logs
 docker container logs -f --tail 50 micro-portainer
 
 # clean up
@@ -48,8 +50,14 @@ docker container rm -f micro-portainer
 ## Up and Running (local build)
 
 ```bash
-docker-compose up -d --build web
-docker-compose logs -f --tail 50 web
+# retrieve current docker API version
+export V_DOCKER_API="$(docker version | awk '/^\sAPI\sversion/{print $3}')"
+
+docker-compose up -d --build micro-portainer
+# access on http://localhost:8080
+
+# logs
+docker-compose logs -f --tail 50 micro-portainer
 ```
 
 ## UI access
