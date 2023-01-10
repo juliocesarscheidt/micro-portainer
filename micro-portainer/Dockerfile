@@ -10,7 +10,7 @@ RUN yarn install --production=true
 COPY . .
 RUN yarn run build --mode production
 
-FROM nginx:1.22 as runtime
+FROM nginx:1-alpine as runtime
 EXPOSE 8080
 
 COPY docker-entrypoint.sh /opt/docker-entrypoint.sh
