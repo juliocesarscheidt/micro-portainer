@@ -69,6 +69,7 @@ docker-compose logs -f --tail 50 micro-portainer
 ## Registries
 
 > Docker Hub
+
 [https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer](https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer)
 
 ```bash
@@ -76,11 +77,12 @@ export DOCKER_USERNAME='juliocesarmidia'
 export DOCKER_PASSWORD=''
 # login
 echo "$DOCKER_PASSWORD" | docker login docker.io -u "$DOCKER_USERNAME" --password-stdin
-# tag and push image
+# push image
 docker image push "docker.io/$DOCKER_USERNAME/micro-portainer:latest"
 ```
 
 > Github
+
 [https://github.com/juliocesarscheidt/docker-api-nginx-proxy/pkgs/container/micro-portainer](https://github.com/juliocesarscheidt/docker-api-nginx-proxy/pkgs/container/micro-portainer)
 
 ```bash
