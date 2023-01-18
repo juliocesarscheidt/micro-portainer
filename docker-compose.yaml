@@ -14,7 +14,7 @@ services:
       - 8080:8080
     environment:
       NODE_ENV: production
-      V_DOCKER_API: ${V_DOCKER_API}
+      V_DOCKER_API: ${V_DOCKER_API:-1.41}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./micro-portainer:/app:rw
