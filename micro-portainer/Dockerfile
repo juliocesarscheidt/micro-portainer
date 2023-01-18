@@ -1,5 +1,4 @@
 FROM node:16-alpine as builder
-LABEL maintainer="Julio Cesar <julio@blackdevs.com.br>"
 
 WORKDIR /app
 
@@ -11,6 +10,10 @@ COPY . .
 RUN yarn run build --mode production
 
 FROM nginx:1-alpine as runtime
+
+LABEL maintainer="Julio Cesar <julio@blackdevs.com.br>"
+LABEL org.opencontainers.image.source https://github.com/juliocesarscheidt/docker-api-nginx-proxy
+
 EXPOSE 8080
 
 COPY docker-entrypoint.sh /opt/docker-entrypoint.sh

@@ -65,3 +65,21 @@ docker-compose logs -f --tail 50 micro-portainer
 [http://localhost:8080](http://localhost:8080)
 
 ![image](./images/containers-page.png)
+
+## Registries
+
+> Docker Hub
+[https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer](https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer)
+
+> Github
+[https://github.com/users/juliocesarscheidt/packages/container/package/docker-api-nginx-proxy](https://github.com/users/juliocesarscheidt/packages/container/package/docker-api-nginx-proxy)
+
+```bash
+export GITHUB_TOKEN=''
+export GITHUB_USERNAME=''
+# login
+echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_USERNAME" --password-stdin
+# tag and push image
+docker image tag "docker.io/juliocesarmidia/micro-portainer:latest" "ghcr.io/$GITHUB_USERNAME/micro-portainer:latest"
+docker image push "ghcr.io/$GITHUB_USERNAME/micro-portainer:latest"
+```
