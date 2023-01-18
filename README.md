@@ -71,15 +71,25 @@ docker-compose logs -f --tail 50 micro-portainer
 > Docker Hub
 [https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer](https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer)
 
+```bash
+export DOCKER_USERNAME='juliocesarmidia'
+export DOCKER_PASSWORD=''
+# login
+echo "$DOCKER_PASSWORD" | docker login docker.io -u "$DOCKER_USERNAME" --password-stdin
+# tag and push image
+docker image push "docker.io/$DOCKER_USERNAME/micro-portainer:latest"
+```
+
 > Github
-[https://github.com/users/juliocesarscheidt/packages/container/package/docker-api-nginx-proxy](https://github.com/users/juliocesarscheidt/packages/container/package/docker-api-nginx-proxy)
+[https://github.com/juliocesarscheidt/docker-api-nginx-proxy/pkgs/container/micro-portainer](https://github.com/juliocesarscheidt/docker-api-nginx-proxy/pkgs/container/micro-portainer)
 
 ```bash
+export GITHUB_USERNAME='juliocesarscheidt'
 export GITHUB_TOKEN=''
-export GITHUB_USERNAME=''
+export DOCKER_USERNAME='juliocesarmidia'
 # login
 echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_USERNAME" --password-stdin
 # tag and push image
-docker image tag "docker.io/juliocesarmidia/micro-portainer:latest" "ghcr.io/$GITHUB_USERNAME/micro-portainer:latest"
+docker image tag "docker.io/$DOCKER_USERNAME/micro-portainer:latest" "ghcr.io/$GITHUB_USERNAME/micro-portainer:latest"
 docker image push "ghcr.io/$GITHUB_USERNAME/micro-portainer:latest"
 ```
