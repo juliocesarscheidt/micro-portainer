@@ -13,12 +13,15 @@ FROM nginx:1-alpine as runtime
 
 LABEL maintainer="Julio Cesar <julio@blackdevs.com.br>"
 LABEL org.opencontainers.image.source https://github.com/juliocesarscheidt/docker-api-nginx-proxy
+LABEL org.opencontainers.image.description "Docker API being proxied by Nginx, exposing its information on some UI made with VueJS"
 
 EXPOSE 8080
 
 COPY docker-entrypoint.sh /opt/docker-entrypoint.sh
 COPY --from=builder --chown=nginx:nginx /app/nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder --chown=nginx:nginx /app/dist /usr/share/nginx/html
+
+RUN cat /etc/nginx/nginx.conf
 
 ENTRYPOINT ["/opt/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
