@@ -12,7 +12,7 @@ RUN yarn run build --mode production
 FROM nginx:1-alpine as runtime
 
 LABEL maintainer="Julio Cesar <julio@blackdevs.com.br>"
-LABEL org.opencontainers.image.source https://github.com/juliocesarscheidt/docker-api-nginx-proxy
+LABEL org.opencontainers.image.source https://github.com/juliocesarscheidt/micro-portainer
 LABEL org.opencontainers.image.description "Docker API being proxied by Nginx, exposing its information on some UI made with VueJS"
 LABEL org.opencontainers.image.licenses=MIT
 

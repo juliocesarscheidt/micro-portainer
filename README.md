@@ -83,7 +83,7 @@ docker image push "docker.io/$DOCKERHUB_USERNAME/micro-portainer:latest"
 
 > Github
 
-[https://github.com/juliocesarscheidt/docker-api-nginx-proxy/pkgs/container/micro-portainer](https://github.com/juliocesarscheidt/docker-api-nginx-proxy/pkgs/container/micro-portainer)
+[https://github.com/juliocesarscheidt/micro-portainer/pkgs/container/micro-portainer](https://github.com/juliocesarscheidt/micro-portainer/pkgs/container/micro-portainer)
 
 ```bash
 export GITHUB_USERNAME='juliocesarscheidt'
