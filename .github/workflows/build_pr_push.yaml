@@ -34,10 +34,27 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GHCR_TOKEN }}
-    - name: Set short SHA
-      id: setShortSha
+    - name: Build image
+      uses: docker/build-push-action@v4
+      with:
+        push: false
+        context: ./micro-portainer
+        tags: |
+          docker.io/juliocesarmidia/micro-portainer:latest
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'docker.io/juliocesarmidia/micro-portainer:latest'
+        scan-type: 'image'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL'
+    - id: setShortSha
+      name: Set short SHA
       run: echo "SHA_SHORT=$(git rev-parse --short=7 HEAD)" >> $GITHUB_OUTPUT
-    - name: Build and push
+    - name: Push image
       uses: docker/build-push-action@v4
       with:
         push: true
