@@ -73,12 +73,12 @@ docker-compose logs -f --tail 50 micro-portainer
 [https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer](https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer)
 
 ```bash
-export DOCKER_HUB_USERNAME='juliocesarmidia'
-export DOCKER_HUB_PASSWORD=''
+export DOCKERHUB_USERNAME='juliocesarmidia'
+export DOCKERHUB_TOKEN=''
 # login
-echo "$DOCKER_HUB_PASSWORD" | docker login docker.io -u "$DOCKER_HUB_USERNAME" --password-stdin
+echo "$DOCKERHUB_TOKEN" | docker login docker.io -u "$DOCKERHUB_USERNAME" --password-stdin
 # push image
-docker image push "docker.io/$DOCKER_HUB_USERNAME/micro-portainer:latest"
+docker image push "docker.io/$DOCKERHUB_USERNAME/micro-portainer:latest"
 ```
 
 > Github
