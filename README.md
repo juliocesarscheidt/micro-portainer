@@ -73,12 +73,12 @@ docker-compose logs -f --tail 50 micro-portainer
 [https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer](https://hub.docker.com/repository/docker/juliocesarmidia/micro-portainer)
 
 ```bash
-export DOCKER_USERNAME='juliocesarmidia'
-export DOCKER_PASSWORD=''
+export DOCKER_HUB_USERNAME='juliocesarmidia'
+export DOCKER_HUB_PASSWORD=''
 # login
-echo "$DOCKER_PASSWORD" | docker login docker.io -u "$DOCKER_USERNAME" --password-stdin
+echo "$DOCKER_HUB_PASSWORD" | docker login docker.io -u "$DOCKER_HUB_USERNAME" --password-stdin
 # push image
-docker image push "docker.io/$DOCKER_USERNAME/micro-portainer:latest"
+docker image push "docker.io/$DOCKER_HUB_USERNAME/micro-portainer:latest"
 ```
 
 > Github
@@ -88,10 +88,9 @@ docker image push "docker.io/$DOCKER_USERNAME/micro-portainer:latest"
 ```bash
 export GITHUB_USERNAME='juliocesarscheidt'
 export GITHUB_TOKEN=''
-export DOCKER_USERNAME='juliocesarmidia'
 # login
 echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_USERNAME" --password-stdin
 # tag and push image
-docker image tag "docker.io/$DOCKER_USERNAME/micro-portainer:latest" "ghcr.io/$GITHUB_USERNAME/micro-portainer:latest"
+docker image tag "docker.io/juliocesarmidia/micro-portainer:latest" "ghcr.io/$GITHUB_USERNAME/micro-portainer:latest"
 docker image push "ghcr.io/$GITHUB_USERNAME/micro-portainer:latest"
 ```
