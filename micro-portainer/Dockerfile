@@ -9,7 +9,7 @@ RUN yarn install --production=true
 COPY . .
 RUN yarn run build --mode production
 
-FROM nginx:1-alpine as runtime
+FROM nginx:1.23.3-alpine as runtime
 
 LABEL maintainer="Julio Cesar <julio@blackdevs.com.br>"
 LABEL org.opencontainers.image.source https://github.com/juliocesarscheidt/micro-portainer
