@@ -67,9 +67,9 @@ jobs:
           ghcr.io/juliocesarscheidt/micro-portainer:lts
         labels: |
           maintainer="Julio Cesar <julio@blackdevs.com.br>"
-          org.opencontainers.image.source https://github.com/juliocesarscheidt/micro-portainer
-          org.opencontainers.image.description "Docker API being proxied by Nginx, exposing its information on some UI made with VueJS"
-          org.opencontainers.image.licenses=MIT
+          org.opencontainers.image.source="https://github.com/juliocesarscheidt/micro-portainer"
+          org.opencontainers.image.description="Docker API being proxied by Nginx, exposing its information on some UI made with VueJS"
+          org.opencontainers.image.licenses="MIT"
     - id: setShortSha
       name: Set short SHA
       run: echo "SHA_SHORT=$(git rev-parse --short=7 HEAD)" >> $GITHUB_OUTPUT
