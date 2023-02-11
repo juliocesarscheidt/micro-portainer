@@ -59,17 +59,6 @@ jobs:
       uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-    - name: Docker meta
-      id: meta
-      uses: docker/metadata-action@v4
-      with:
-        images: |
-          ghcr.io/juliocesarscheidt/micro-portainer:lts
-        labels: |
-          maintainer="Julio Cesar <julio@blackdevs.com.br>"
-          org.opencontainers.image.source="https://github.com/juliocesarscheidt/micro-portainer"
-          org.opencontainers.image.description="Docker API being proxied by Nginx, exposing its information on some UI made with VueJS"
-          org.opencontainers.image.licenses="MIT"
     - id: setShortSha
       name: Set short SHA
       run: echo "SHA_SHORT=$(git rev-parse --short=7 HEAD)" >> $GITHUB_OUTPUT
@@ -92,4 +81,8 @@ jobs:
         tags: |
           docker.io/juliocesarmidia/micro-portainer:${{ steps.setShortSha.outputs.SHA_SHORT }}
           ghcr.io/juliocesarscheidt/micro-portainer:${{ steps.setShortSha.outputs.SHA_SHORT }}
-        labels: ${{ steps.meta.outputs.labels }}
+        labels: |
+          maintainer="Julio Cesar <julio@blackdevs.com.br>"
+          org.opencontainers.image.source="https://github.com/juliocesarscheidt/micro-portainer"
+          org.opencontainers.image.description="Docker API being proxied by Nginx, exposing its information on some UI made with VueJS"
+          org.opencontainers.image.licenses="MIT"
