@@ -48,7 +48,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions:
-      id-token: read
       contents: read
       packages: write
     defaults:
@@ -91,9 +90,9 @@ jobs:
 
   comment:
     name: Comment
+    needs: push
     runs-on: ubuntu-latest
     permissions:
-      id-token: read
       pull-requests: write
     defaults:
       run:
