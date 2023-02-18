@@ -85,6 +85,10 @@ docker image push "docker.io/$DOCKERHUB_USERNAME/micro-portainer:latest"
 
 [https://github.com/juliocesarscheidt/micro-portainer/pkgs/container/micro-portainer](https://github.com/juliocesarscheidt/micro-portainer/pkgs/container/micro-portainer)
 
+In order to use the GITHUB_TOKEN in CI with Github Actions to push the image to ghcr.io registry, we need to enable the following config in the package configuration:
+
+![image](./images/github-package-config.PNG)
+
 ```bash
 export GITHUB_USERNAME='juliocesarscheidt'
 export GITHUB_TOKEN=''
