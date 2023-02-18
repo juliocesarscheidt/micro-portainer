@@ -17,7 +17,6 @@ jobs:
     name: Comment
     runs-on: ubuntu-latest
     permissions:
-      id-token: read
       pull-requests: write
     defaults:
       run:
