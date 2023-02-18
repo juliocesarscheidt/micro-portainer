@@ -1,18 +1,16 @@
-name: Pipeline CI
+name: Pipeline CI - PR Open
 
 on:
   # schedule:
   #   - cron: "0 0 * * *"
-  push:
-    branches:
-      - "main"
-      - "development"
-    # tags:
-    #   - "v*.*.*"
+
+  # push:
+  #   branches: [main, development]
+  #   tags: ["v*.*.*"]
+
   pull_request:
-    branches:
-      - "main"
-      - "development"
+    branches: [main, development]
+    types: [opened, reopened, synchronize, edited]
 
 jobs:
   build:
@@ -33,11 +31,11 @@ jobs:
       uses: docker/setup-buildx-action@v2
     - name: Build image
       run: |
-        docker image build --tag docker.io/juliocesarmidia/micro-portainer:${{ github.run_number }} ./micro-portainer
+        docker image build --tag docker.io/juliocesarmidia/micro-portainer:${{ github.event.number }} ./micro-portainer
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'docker.io/juliocesarmidia/micro-portainer:${{ github.run_number }}'
+        image-ref: 'docker.io/juliocesarmidia/micro-portainer:${{ github.event.number }}'
         scan-type: 'image'
         format: 'table'
         exit-code: '1'
@@ -49,6 +47,10 @@ jobs:
     name: Push Image
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      id-token: read
+      contents: read
+      packages: write
     defaults:
       run:
         shell: bash
@@ -72,7 +74,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.GHCR_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Push image
       uses: docker/build-push-action@v4
       with:
@@ -86,3 +88,22 @@ jobs:
           org.opencontainers.image.source="https://github.com/juliocesarscheidt/micro-portainer"
           org.opencontainers.image.description="Docker API being proxied by Nginx, exposing its information on some UI made with VueJS"
           org.opencontainers.image.licenses="MIT"
+
+  comment:
+    name: Comment
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: read
+      pull-requests: write
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: Comment on PR
+      uses: mshick/add-pr-comment@v1
+      with:
+        message: |
+          :rocket: The build was successful, the docker image docker.io/juliocesarmidia/micro-portainer was pushed to the registries!
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token-user-login: "github-actions[bot]"
+        allow-repeats: false

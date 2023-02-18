@@ -16,11 +16,11 @@ LABEL org.opencontainers.image.source "https://github.com/juliocesarscheidt/micr
 LABEL org.opencontainers.image.description "Docker API being proxied by Nginx, exposing its information on some UI made with VueJS"
 LABEL org.opencontainers.image.licenses "MIT"
 
-EXPOSE 8080
-
 COPY docker-entrypoint.sh /opt/docker-entrypoint.sh
 COPY --from=builder --chown=nginx:nginx /app/nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder --chown=nginx:nginx /app/dist /usr/share/nginx/html
+
+EXPOSE 8080
 
 ENTRYPOINT ["/opt/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
