@@ -77,7 +77,8 @@ jobs:
     - name: Push image
       uses: docker/build-push-action@v4
       with:
-        push: ${{ github.event_name != 'pull_request' }}
+        # push: ${{ github.event_name == 'pull_request' }}
+        push: true
         context: ./micro-portainer
         tags: |
           docker.io/juliocesarmidia/micro-portainer:${{ steps.setShortSha.outputs.SHA_SHORT }}
